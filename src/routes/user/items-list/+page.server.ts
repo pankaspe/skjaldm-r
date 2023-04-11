@@ -9,9 +9,10 @@ export const load = (async ({ locals: { supabase, getSession } }) => {
 	}
 
 	const { data } = await supabase
-		.from('menu')
+		.from('projects')
 		.select(`
             title,
+			slug,
 			id,
 			description,
 			created_at,

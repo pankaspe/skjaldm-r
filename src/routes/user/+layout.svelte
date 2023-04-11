@@ -63,13 +63,12 @@
 	};
     
     $: activeUrl = $page.url.pathname;
-	let spanClass = 'pl-2 self-center text-md text-rose-900 whitespace-nowrap dark:text-white';
-	let btnClass = 'text-gray-300 dark:text-gray-300 hover:bg-rose-800 dark:hover:bg-rose-800 rounded-lg text-xl p-2';
+	let btnClass = 'text-gray-300 dark:text-gray-300 hover:bg-blue-800 dark:hover:bg-blue-800 rounded-lg text-xl p-2';
 
 	let site = {
     name: 'Skjaldmær',
     href: '/',
-    img: 'https://flowbite-svelte.com/images/flowbite-svelte-icon-logo.svg'
+    img: 'https://www.svgrepo.com/show/254091/rune.svg',
   };
 </script>
 
@@ -80,8 +79,8 @@
 <svelte:window bind:innerWidth={width} />
 
 
-<Navbar class="text-white bg-gradient-to-r from-orange-400 to-pink-600">
-    <NavHamburger on:click={toggleDrawer} btnClass="ml-3 lg:hidden text-gray-300 dark:text-gray-300 hover:bg-rose-800 dark:hover:bg-rose-800 rounded-lg text-xl p-2" />
+<Navbar class="text-white bg-white dark:bg-gray-800 text-zinc-900 dark:text-zinc-100">
+    <NavHamburger on:click={toggleDrawer} btnClass="ml-3 lg:hidden text-gray-300 dark:text-gray-300 hover:bg-blue-800 dark:hover:bg-blue-800 rounded-lg text-xl p-2" />
     <NavBrand href="/" class="lg:ml-64">
 		<span class="text-md dark:text-white pl-4">
 			Admin dashboard v. 1
@@ -100,7 +99,7 @@
 	bind:hidden={drawerHidden}
 	bind:activateClickOutside
 	width="w-64"
-	class="overflow-scroll pb-32 bg-white dark:bg-gray-900 drop-shadow-xl"
+	class="overflow-scroll pb-32 bg-gradient-to-b from-blue-400 to-blue-600 drop-shadow-xl"
 	id="sidebar"
 >
 	<div class="flex items-center">
@@ -111,43 +110,46 @@
 			<SidebarGroup>
 				<SidebarBrand {site} class="pb-8"/>
 				<SidebarItem
-					label="Profilo"
+					label="Profile"
 					href={`/user/profile`}
-					{spanClass}
 					on:click={toggleSide}
 					active={activeUrl === `/user/profile`}
+					class="hover:bg-blue-500 dark:hover:bg-blue-500 text-white"
+					activeClass="flex items-center p-2 text-base font-normal text-white bg-blue-700 dark:bg-blue-700 rounded-lg dark:text-white"
 				>
                 <svelte:fragment slot="icon">
-                    <User class="text-rose-500 dark:text-rose-500" />
+                    <User class="text-blue-100 dark:text-blue-100" />
                 </svelte:fragment>
                 </SidebarItem>
 
 				<SidebarItem
-					label="I miei menu"
+					label="My projects"
 					href={`/user/items-list`}
-					{spanClass}
 					on:click={toggleSide}
 					active={activeUrl === `/user/items-list`}
+					class="hover:bg-blue-500 dark:hover:bg-blue-500 text-white"
+					activeClass="flex items-center p-2 text-base font-normal text-white bg-blue-700 dark:bg-blue-700 rounded-lg dark:text-white"
 				>
 				<svelte:fragment slot="icon">
-					<Ticket class="text-rose-500 dark:text-rose-500" />
+					<Ticket class="text-blue-100 dark:text-blue-100" />
 				</svelte:fragment>
 				</SidebarItem>
                 
                 <SidebarItem
                     label="Help"
                     href={`/user/help`}
-                    {spanClass}
                     on:click={toggleSide}
                     active={activeUrl === `/user/help`}
+					class="hover:bg-blue-500 dark:hover:bg-blue-500 text-white"
+					activeClass="flex items-center p-2 text-base font-normal text-white bg-blue-700 dark:bg-blue-700 rounded-lg dark:text-white"
                 >
                 <svelte:fragment slot="icon">
-                    <QuestionMarkCircle class="text-rose-500 dark:text-rose-500" />
+                    <QuestionMarkCircle class="text-blue-100 dark:text-blue-100" />
                 </svelte:fragment>
                 </SidebarItem>
 
-				<form class="py-10 w-full" method="post" action="/user/profile?/signout" >
-					<Button color="alternative" type="submit" class="w-full">
+				<form class="pt-14 w-full" method="post" action="/user/profile?/signout" >
+					<Button color="dark" type="submit" class="w-full">
 						logout
 					</Button>
 				</form>

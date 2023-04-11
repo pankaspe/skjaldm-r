@@ -1,19 +1,21 @@
-<!-- src/routes/account/+page.svelte -->
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import type { ActionData, PageData } from './$types';
-	import { Button, Spinner, Input, Label } from 'flowbite-svelte';
-
+	import { Button, Spinner, Input, Label, Textarea } from 'flowbite-svelte';
+  
 	export let data: PageData;
 	export let form: ActionData;
 
-	let { session, profile } = data;
+	let { menu } = data;
 
-  	let profileForm: any;
+	let menuForm: any;
 	let loading = false;
-	let fullName: string = profile?.full_name;
-	let username: string = profile?.username;
-	let website: string = profile?.website;
+
+	let id: string = menu?.id;
+	let title: string = menu?.title;
+	let slug: string = menu?.slug;
+	let description: string = menu?.description;
+
 
 	function handleSubmit() {
 		loading = true;
@@ -21,36 +23,37 @@
 			loading = false;
 		};
 	}
-</script>
+
+  </script>
 
 <section class="mx-auto max-w-7xl">
 	<h1 class="my-12 text-4xl font-extrabold leading-none tracking-normal text-gray-700 dark:text-gray-200 md:text-6xl md:tracking-tight">
-		<span>Modifica il tuo</span>
+		<span>Modifica</span>
 		<span class="block w-full py-2 text-transparent bg-clip-text leading-12 bg-gradient-to-r from-blue-400 to-blue-600 lg:inline">
-			Profilo
+			{title}
 		</span> 
 	</h1>
 </section>
 
 <section class="mx-auto max-w-7xl bg-white dark:bg-gray-600 p-10 rounded-lg drop-shadow-md">
 
-	<form method="post" action="?/update" use:enhance={handleSubmit} bind:this={profileForm}>
+	<form method="post" action="?/update" use:enhance={handleSubmit} bind:this={menuForm}>
 		<div class="grid gap-6 mb-6 grid-cols-1">
-			<div>
-				<Label for="first_name" class="mb-2">Email</Label>
-				<Input id="email" type="text" value={session.user.email} disabled  />
+			<div class=hidden>
+				<Label for="id" class="mb-2">ID</Label>
+				<Input id="id" name="id" type="text" value={form?.id ?? id}  />
 			</div>
 			<div>
-				<Label for="fullName" class="mb-2">Full name</Label>
-				<Input id="fullName" name="fullName" type="text" value={form?.fullName ?? fullName} />
+				<Label for="title" class="mb-2">Title</Label>
+				<Input id="title" name="title" type="text" value={form?.title ?? title} size="lg" required />
 			</div>
 			<div>
-				<Label for="username" class="mb-2">Username</Label>
-				<Input id="username" name="username" type="text" value={form?.username ?? username} />
+				<Label for="description" class="mb-2">Description</Label>
+				<Textarea id="description" name="description" rows="4" value={form?.description ?? description}/>
 			</div>
 			<div>
-				<Label for="website" class="mb-2">Website</Label>
-				<Input id="website" name="website" type="website" value={form?.website ?? website} />
+				<Label for="slug" class="mb-2">slug</Label>
+				<Input id="slug" name="slug" type="text" value={form?.slug ?? slug} />
 			</div>
 		</div>
 
