@@ -113,11 +113,11 @@
 			<SidebarGroup>
 				<SidebarBrand {site} class="pb-8"/>
 				<SidebarItem
-					label="Home"
-					href={`/user`}
+					label="Profile"
+					href={`/user/profile`}
 					{spanClass}
 					on:click={toggleSide}
-					active={activeUrl === `/pages/dashboard`}
+					active={activeUrl === `/user/profile`}
 				>
                 <svelte:fragment slot="icon">
                     <HomeModern class="text-rose-500 dark:text-rose-500" />
@@ -125,18 +125,18 @@
                 </SidebarItem>
                 
                 <SidebarItem
-                    label="Account"
-                    href={`/user/account`}
+                    label="Help"
+                    href={`/user/help`}
                     {spanClass}
                     on:click={toggleSide}
-                    active={activeUrl === `/user/account`}
+                    active={activeUrl === `/user/help`}
                 >
                 <svelte:fragment slot="icon">
                     <Cog class="text-rose-500 dark:text-rose-500" />
                 </svelte:fragment>
                 </SidebarItem>
 
-				<form class="py-10 w-full" method="post" action="/user/account?/signout" >
+				<form class="py-10 w-full" method="post" action="/user/profile?/signout" >
 					<Button color="alternative" type="submit" class="w-full">
 						logout
 					</Button>

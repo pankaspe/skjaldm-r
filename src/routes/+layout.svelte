@@ -4,7 +4,6 @@
 	import { invalidate } from '$app/navigation'
 	import { onMount } from 'svelte'
 	import type { LayoutData } from './$types'
-	import { DarkMode } from 'flowbite-svelte';
 	
 	export let data: LayoutData
 
