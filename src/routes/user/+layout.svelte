@@ -63,7 +63,7 @@
 	};
     
     $: activeUrl = $page.url.pathname;
-	let btnClass = 'text-gray-300 dark:text-gray-300 hover:bg-blue-800 dark:hover:bg-blue-800 rounded-lg text-xl p-2';
+	let btnClass = 'text-gray-300 dark:text-gray-300 hover:bg-teal-600 dark:hover:bg-teal-800 rounded-lg text-xl p-2';
 
 	let site = {
     name: 'Skjaldmær',
@@ -80,7 +80,7 @@
 
 
 <Navbar class="text-white bg-white dark:bg-gray-800 text-zinc-900 dark:text-zinc-100">
-    <NavHamburger on:click={toggleDrawer} btnClass="ml-3 lg:hidden text-gray-300 dark:text-gray-300 hover:bg-blue-800 dark:hover:bg-blue-800 rounded-lg text-xl p-2" />
+    <NavHamburger on:click={toggleDrawer} btnClass="ml-3 lg:hidden text-gray-300 dark:text-gray-300 hover:bg-teal-800 dark:hover:bg-teal-800 rounded-lg text-xl p-2" />
     <NavBrand href="/" class="lg:ml-64">
 		<span class="text-md dark:text-white pl-4">
 			Admin dashboard v. 1
@@ -99,7 +99,7 @@
 	bind:hidden={drawerHidden}
 	bind:activateClickOutside
 	width="w-64"
-	class="overflow-scroll pb-32 bg-gradient-to-b from-blue-400 to-blue-600 drop-shadow-xl"
+	class="overflow-scroll pb-32 bg-gradient-to-b from-teal-400 to-teal-600 drop-shadow-xl"
 	id="sidebar"
 >
 	<div class="flex items-center">
@@ -114,11 +114,11 @@
 					href={`/user/profile`}
 					on:click={toggleSide}
 					active={activeUrl === `/user/profile`}
-					class="hover:bg-blue-500 dark:hover:bg-blue-500 text-white"
-					activeClass="flex items-center p-2 text-base font-normal text-white bg-blue-700 dark:bg-blue-700 rounded-lg dark:text-white"
+					class="hover:bg-teal-500 dark:hover:bg-teal-500 text-white"
+					activeClass="flex items-center p-2 text-base font-normal text-white bg-teal-700 dark:bg-teal-700 rounded-lg dark:text-white"
 				>
                 <svelte:fragment slot="icon">
-                    <User class="text-blue-100 dark:text-blue-100" />
+                    <User class="text-teal-100 dark:text-teal-100" />
                 </svelte:fragment>
                 </SidebarItem>
 
@@ -127,11 +127,11 @@
 					href={`/user/items-list`}
 					on:click={toggleSide}
 					active={activeUrl === `/user/items-list`}
-					class="hover:bg-blue-500 dark:hover:bg-blue-500 text-white"
-					activeClass="flex items-center p-2 text-base font-normal text-white bg-blue-700 dark:bg-blue-700 rounded-lg dark:text-white"
+					class="hover:bg-teal-500 dark:hover:bg-teal-500 text-white"
+					activeClass="flex items-center p-2 text-base font-normal text-white bg-teal-700 dark:bg-teal-700 rounded-lg dark:text-white"
 				>
 				<svelte:fragment slot="icon">
-					<Ticket class="text-blue-100 dark:text-blue-100" />
+					<Ticket class="text-teal-100 dark:text-teal-100" />
 				</svelte:fragment>
 				</SidebarItem>
                 
@@ -140,11 +140,11 @@
                     href={`/user/help`}
                     on:click={toggleSide}
                     active={activeUrl === `/user/help`}
-					class="hover:bg-blue-500 dark:hover:bg-blue-500 text-white"
-					activeClass="flex items-center p-2 text-base font-normal text-white bg-blue-700 dark:bg-blue-700 rounded-lg dark:text-white"
+					class="hover:bg-teal-500 dark:hover:bg-teal-500 text-white"
+					activeClass="flex items-center p-2 text-base font-normal text-white bg-teal-700 dark:bg-teal-700 rounded-lg dark:text-white"
                 >
                 <svelte:fragment slot="icon">
-                    <QuestionMarkCircle class="text-blue-100 dark:text-blue-100" />
+                    <QuestionMarkCircle class="text-teal-100 dark:text-teal-100" />
                 </svelte:fragment>
                 </SidebarItem>
 

@@ -26,7 +26,7 @@
 <section class="mx-auto max-w-7xl">
 	<h1 class="my-12 text-4xl font-extrabold leading-none tracking-normal text-gray-700 dark:text-gray-200 md:text-6xl md:tracking-tight">
 		<span>Modifica il tuo</span>
-		<span class="block w-full py-2 text-transparent bg-clip-text leading-12 bg-gradient-to-r from-blue-400 to-blue-600 lg:inline">
+		<span class="block w-full py-2 text-transparent bg-clip-text leading-12 bg-gradient-to-r from-teal-400 to-teal-600 lg:inline">
 			Profilo
 		</span> 
 	</h1>
@@ -56,7 +56,7 @@
 
 		<div>
 			{#if loading }
-			<Button disabled color="blue">
+			<Button disabled color="teal">
 				<Spinner class="mr-3" size="4" color="white" />Loading ...
 			</Button>
 			{:else}
