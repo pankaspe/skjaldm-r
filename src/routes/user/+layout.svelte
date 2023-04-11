@@ -13,12 +13,11 @@
 		Drawer,
 		CloseButton,
 		Button,
-		Breadcrumb, 
-		BreadcrumbItem
 	} from 'flowbite-svelte';
     import {
-        HomeModern,
-        Cog
+        QuestionMarkCircle,
+		Ticket,
+		User,
     } from "svelte-heros-v2";
 	import { sineIn } from 'svelte/easing';
     import { page } from '$app/stores';
@@ -64,7 +63,6 @@
 	};
     
     $: activeUrl = $page.url.pathname;
-	$: getUrl =  $page.url;
 	let spanClass = 'pl-2 self-center text-md text-rose-900 whitespace-nowrap dark:text-white';
 	let btnClass = 'text-gray-300 dark:text-gray-300 hover:bg-rose-800 dark:hover:bg-rose-800 rounded-lg text-xl p-2';
 
@@ -83,8 +81,8 @@
 
 
 <Navbar class="text-white bg-gradient-to-r from-orange-400 to-pink-600">
-    <NavHamburger on:click={toggleDrawer} btnClass="ml-3 lg:hidden" />
-    <NavBrand href="/" class="lg:ml-24">
+    <NavHamburger on:click={toggleDrawer} btnClass="ml-3 lg:hidden text-gray-300 dark:text-gray-300 hover:bg-rose-800 dark:hover:bg-rose-800 rounded-lg text-xl p-2" />
+    <NavBrand href="/" class="lg:ml-64">
 		<span class="text-md dark:text-white pl-4">
 			Admin dashboard v. 1
 		</span>
@@ -102,7 +100,7 @@
 	bind:hidden={drawerHidden}
 	bind:activateClickOutside
 	width="w-64"
-	class="overflow-scroll pb-32 bg-zinc-white dark:bg-zinc-900 drop-shadow-xl"
+	class="overflow-scroll pb-32 bg-white dark:bg-gray-900 drop-shadow-xl"
 	id="sidebar"
 >
 	<div class="flex items-center">
@@ -113,16 +111,28 @@
 			<SidebarGroup>
 				<SidebarBrand {site} class="pb-8"/>
 				<SidebarItem
-					label="Profile"
+					label="Profilo"
 					href={`/user/profile`}
 					{spanClass}
 					on:click={toggleSide}
 					active={activeUrl === `/user/profile`}
 				>
                 <svelte:fragment slot="icon">
-                    <HomeModern class="text-rose-500 dark:text-rose-500" />
+                    <User class="text-rose-500 dark:text-rose-500" />
                 </svelte:fragment>
                 </SidebarItem>
+
+				<SidebarItem
+					label="I miei menu"
+					href={`/user/items-list`}
+					{spanClass}
+					on:click={toggleSide}
+					active={activeUrl === `/user/items-list`}
+				>
+				<svelte:fragment slot="icon">
+					<Ticket class="text-rose-500 dark:text-rose-500" />
+				</svelte:fragment>
+				</SidebarItem>
                 
                 <SidebarItem
                     label="Help"
@@ -132,7 +142,7 @@
                     active={activeUrl === `/user/help`}
                 >
                 <svelte:fragment slot="icon">
-                    <Cog class="text-rose-500 dark:text-rose-500" />
+                    <QuestionMarkCircle class="text-rose-500 dark:text-rose-500" />
                 </svelte:fragment>
                 </SidebarItem>
 

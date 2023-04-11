@@ -24,10 +24,14 @@
 </script>
 
 
-<div class="py-9 lg:w-2/3">
-	<div class="py-8">
-		<P size="lg">Your profile</P>
-	</div>
+<section class="mx-auto max-w-7xl">
+	<h1 class="my-12 text-4xl font-extrabold leading-none tracking-normal text-gray-700 dark:text-gray-200 md:text-6xl md:tracking-tight">
+		<span>Modifica il tuo</span>
+		<span class="block w-full py-2 text-transparent bg-clip-text leading-12 bg-gradient-to-r from-pink-600 to-orange-400 lg:inline">
+			Profilo
+		</span> 
+	</h1>
+
 	<form method="post" action="?/update" use:enhance={handleSubmit} bind:this={profileForm}>
 		<div class="grid gap-6 mb-6 grid-cols-1">
 			<div>
@@ -54,4 +58,4 @@
 			</Button>
 		</div>
 	</form>
-</div>
+</section>
