@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import { goto } from '$app/navigation';
 	import type { ActionData, PageData } from './$types';
 	import { Button, Spinner, Input, Label, Textarea } from 'flowbite-svelte';
   
@@ -24,6 +25,14 @@
 		};
 	}
 
+	function handleDelete() {
+		loading = true;
+		return async () => {
+			loading = false;
+			goto('/user/items-list');
+		};
+	}
+
   </script>
 
 <section class="mx-auto max-w-7xl">
@@ -34,6 +43,20 @@
 		</span> 
 	</h1>
 </section>
+
+<div class="mx-auto max-w-7xl py-6">
+	<form method="post" action="?/delete" use:enhance={handleDelete}>
+		{#if loading }
+		<Button disabled color="red">
+			<Spinner class="mr-3" size="4" color="white" />Deleting ...
+		</Button>
+		{:else}
+		<Button color="red" type="submit">
+			Delete this project
+		</Button>
+		{/if}
+	</form>
+</div>
 
 <section class="mx-auto max-w-7xl bg-white dark:bg-gray-600 p-10 rounded-lg drop-shadow-md">
 
@@ -66,7 +89,6 @@
 			<Button color="dark" type="submit">
 				Update
 			</Button>
-
 			{/if}
 		</div>
 	</form>

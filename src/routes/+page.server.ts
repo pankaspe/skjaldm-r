@@ -10,6 +10,6 @@ export const load: PageServerLoad = async ({ url, locals: { getSession } }) => {
 		throw redirect(303, '/user/profile');
 	}
 
-	return { url: url.origin };
+	return { url: url.origin, session: session };
 };
 

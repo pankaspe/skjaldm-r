@@ -2,9 +2,7 @@
 	import { Auth } from '@supabase/auth-ui-svelte';
 	import { ThemeSupa } from '@supabase/auth-ui-shared';
 	import type { PageData } from './$types';
-	import {
-		DarkMode,
-	} from 'flowbite-svelte';
+	import { DarkMode } from 'flowbite-svelte';
 
 	export let data: PageData;
 </script>
@@ -15,9 +13,10 @@
 	<div class="flex items-center justify-center h-screen bg-gray-100 dark:bg-gray-900">
 		<div class="bg-white dark:bg-white p-10 w-96 rounded-md drop-shadow-md text-center">
 			<h2 class="text-xl">Login on Skjaldmær v. 1</h2>
+			{data.url}
 			<Auth
 				supabaseClient={data.supabase}
-				redirectTo={`${data.url}/logging-in?redirect=/`}
+				redirectTo={`${data.url}`}
 				appearance={{ 
 					theme: ThemeSupa, 
 					style: { 
