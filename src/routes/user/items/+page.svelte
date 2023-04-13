@@ -1,6 +1,6 @@
 <!-- src/routes/account/+page.svelte -->
 <script lang="ts">
-  	import { Timeline, TimelineItem, Button, Alert, Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell, Checkbox, TableSearch } from 'flowbite-svelte';
+  	import { Skeleton , Button, Alert, Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell, Checkbox, TableSearch } from 'flowbite-svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -36,9 +36,8 @@
 </div>
 
 <section class="mx-auto max-w-7xl bg-white dark:bg-gray-600 p-10 rounded-lg drop-shadow-md">
-	
 	{#await items}
-    	<p class="text-white">...waiting</p>
+		<Skeleton size="xl" class="my-8" />
 	{:then items}
 		{#if items.length == 0}
 			<Alert color="none" class='dark:bg-gray-800 bg-gray-50 text-gray-800 dark:text-gray-100'>
