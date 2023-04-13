@@ -1,10 +1,10 @@
 <script lang="ts">
-    import { Timeline, TimelineItem, Alert, Button, AccordionItem, Accordion} from 'flowbite-svelte';
+    import { Card, Alert, Button, AccordionItem, Accordion} from 'flowbite-svelte';
     import type { PageData } from './$types';
 
     export let data: PageData;
 
-    let { categories } = data;
+    let { categories } : any = data;
     $: ({ categories } = data);
 
 </script>
@@ -39,20 +39,17 @@
 		<span class="font-medium">Heya!</span> it-s empty... create yours categories
 	  </Alert>
 	{:else}
-		<Accordion 
-			activeClasses="bg-teal-600 dark:bg-teal-600 text-white dark:text-white"
-			inactiveClasses="bg-gray-100 dark:bg-gray-800"
-		>
-			{#each categories as val}
-				<AccordionItem>
-					<span slot="header">{val.name}</span>
-					<p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
+	<div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+		{#each categories as val}
+			<div>
+				<Card href="/user/categories/{val.id}">
+					<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{val.name}</h5>
+					<p class="font-normal text-gray-700 dark:text-gray-400 leading-tight">
 						{val.description}
 					</p>
-					<Button color="dark" href="/user/categories/{val.id}">edit</Button>
-				</AccordionItem>
-			{/each}
-			</Accordion>
+				</Card>
+			</div>
+		{/each}
+	</div>
 	{/if}
-
 </section>

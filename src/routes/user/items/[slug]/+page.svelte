@@ -43,6 +43,7 @@
 	</h1>
 </section>
 
+
 <div class="mx-auto max-w-7xl py-6">
 	<form method="post" action="?/delete" use:enhance={handleDelete}>
 		{#if loading }

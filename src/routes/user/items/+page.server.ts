@@ -15,7 +15,10 @@ export const load = (async ({ locals: { supabase, getSession } }) => {
 			slug,
 			id,
 			description,
-			created_at
+			created_at,
+			category(
+				name
+			)
         `)
 		.eq('profile_id', session.user.id);
 
