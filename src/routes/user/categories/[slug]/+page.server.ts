@@ -8,14 +8,17 @@ export const load = (async ({ params, locals: { supabase, getSession } }) => {
 		throw redirect(303, '/');
 	}
 
-	const { data: menu } = await supabase
-		.from('projects')
-		.select(`id, title, slug, description, created_at, user_id, profile_id`)
-        .eq('slug', params.slug)
-		.eq('user_id', session.user.id)
+	const { data: categories } = await supabase
+		.from('category')
+		.select(`id, name, description, value`)
+		.eq('id', params.slug)
+		.eq('profile_id', session.user.id)
 		.single();
 
-	return { session, menu };
+	return { 
+		session, 
+		categories
+	};
 
 }) satisfies PageServerLoad;
 
@@ -24,50 +27,48 @@ export const actions = {
 	update: async ({ request, locals: { supabase, getSession } }) => {
 
 		const formData = await request.formData();
-		const title = formData.get('title') as string;
-        const slug = formData.get('slug') as string;
-		const description = formData.get('description') as string;
 		const id = formData.get('id') as string;
+		const name = formData.get('name') as string;
+		const value = formData.get('value') as string;
+		const description = formData.get('description') as string;
 
 		const session = await getSession();
 
-		const { error } = await supabase.from('projects').upsert({
-			id: id,
-            user_id: session?.user.id,
+		const { error } = await supabase.from('category').upsert({
+			id,
             profile_id: session?.user.id,
-			title,
-            slug,
+			name,
+			value,
 			description,
-			created_at: new Date()
 		});
 
 		if (error) {
 			return fail(500, {
-				title,
+				name,
 				description,
+				value,
                 id,
-                slug
 			});
 		}
 
 		return {
-			title,
+			name,
 			description,
+			value,
             id,
-            slug
 		};
 	},
 
 	delete: async ({ params, locals: { supabase } }) => {
 
-		const { error } = await supabase.from('projects')
+		const { error } = await supabase.from('category')
 			.delete()
-			.eq("slug", params.slug);
+			.eq("id", params.slug);
 
 		if(error){
 			return fail(500)
 		} else {
-			throw redirect(303, '/user/items-list');
+			throw redirect(303, '/user/category');
 		}
 
 	}

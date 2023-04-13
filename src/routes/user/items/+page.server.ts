@@ -8,22 +8,19 @@ export const load = (async ({ locals: { supabase, getSession } }) => {
 		throw redirect(303, '/');
 	}
 
-	const { data } = await supabase
-		.from('projects')
+	const { data: items } = await supabase
+		.from('item')
 		.select(`
             title,
 			slug,
 			id,
 			description,
-			created_at,
-			profile_id(
-				active
-			)
+			created_at
         `)
 		.eq('profile_id', session.user.id);
 
 	return { 
-		items_list: data ?? [],
-		session: session
+		items: items ?? [],
+		session: session,
 	};
 }) satisfies PageServerLoad;

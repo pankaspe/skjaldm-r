@@ -5,9 +5,8 @@
 
 	export let data: PageData;
 
-    let { items_list } = data;
-    $: ({ items_list } = data);
-
+    let { items } = data;
+    $: ({ items } = data);
 
 </script>
 
@@ -16,23 +15,23 @@
 	<h1 class="my-12 text-4xl font-extrabold leading-none tracking-normal text-gray-700 dark:text-gray-200 md:text-6xl md:tracking-tight">
 		<span>List of yours</span>
 		<span class="block w-full py-2 text-transparent bg-clip-text leading-12 bg-gradient-to-r from-teal-400 to-teal-600 lg:inline">
-			Projects
+			items
 		</span> 
 	</h1>
 </section>
 
 <div class="mx-auto max-w-7xl py-6">
 	<Button 
-		href="/user/items-list/create"
+		href="/user/items/create"
 		class="text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-cyan-600 dark:hover:bg-cyan-700 focus:outline-none dark:focus:ring-cyan-800"
 	>
-		Create project
+		Create item
 	</Button>
 </div>
 
 <section class="mx-auto max-w-7xl bg-white dark:bg-gray-600 p-10 rounded-lg drop-shadow-md">
 	
-	{#if items_list.length == 0}
+	{#if items.length == 0}
 		<Alert color="none" class='dark:bg-gray-800 bg-gray-50 text-gray-800 dark:text-gray-100'>
 			<span slot="icon">
 				<svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -43,12 +42,12 @@
 	  	</Alert>
 	{:else}
 		<Timeline>
-			{#each items_list as val}
+			{#each items as val}
 				<TimelineItem title={val.title} date={val.created_at}>
 					<p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
 					{val.description}
 					</p>
-					<Button color="dark" href="/user/items-list/{val.slug}">edit</Button>
+					<Button color="dark" href="/user/items/{val.id}">edit</Button>
 				</TimelineItem>
 			{/each}
 	  	</Timeline>

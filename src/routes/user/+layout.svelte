@@ -123,10 +123,23 @@
                 </SidebarItem>
 
 				<SidebarItem
-					label="My projects"
-					href={`/user/items-list`}
+					label="My items"
+					href={`/user/items`}
 					on:click={toggleSide}
-					active={activeUrl === `/user/items-list`}
+					active={activeUrl === `/user/items`}
+					class="hover:bg-teal-500 dark:hover:bg-teal-500 text-white"
+					activeClass="flex items-center p-2 text-base font-normal text-white bg-teal-700 dark:bg-teal-700 rounded-lg dark:text-white"
+				>
+				<svelte:fragment slot="icon">
+					<Ticket class="text-teal-100 dark:text-teal-100" />
+				</svelte:fragment>
+				</SidebarItem>
+
+				<SidebarItem
+					label="Categories"
+					href={`/user/categories`}
+					on:click={toggleSide}
+					active={activeUrl === `/user/categories`}
 					class="hover:bg-teal-500 dark:hover:bg-teal-500 text-white"
 					activeClass="flex items-center p-2 text-base font-normal text-white bg-teal-700 dark:bg-teal-700 rounded-lg dark:text-white"
 				>

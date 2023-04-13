@@ -1,22 +1,22 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { goto } from '$app/navigation';
+    import { error } from '@sveltejs/kit';
 	import type { ActionData, PageData } from './$types';
-	import { Button, Spinner, Input, Label, Textarea } from 'flowbite-svelte';
+	import { Button, Spinner, Input, Label, Textarea, Select } from 'flowbite-svelte';
   
 	export let data: PageData;
 	export let form: ActionData;
 
-	let { menu } = data;
+	let { categories } = data;
 
-	let menuForm: any;
+	let categoryForm: any;
 	let loading = false;
 
-	let id: string = menu?.id;
-	let title: string = menu?.title;
-	let slug: string = menu?.slug;
-	let description: string = menu?.description;
-
+	let id: string = categories?.id;
+	let name: string = categories?.name;
+	let value: string = categories?.value;
+	let description: string = categories?.description;
 
 	function handleSubmit() {
 		loading = true;
@@ -29,7 +29,7 @@
 		loading = true;
 		return async () => {
 			loading = false;
-			goto('/user/items-list');
+			goto('/user/categories');
 		};
 	}
 
@@ -37,9 +37,9 @@
 
 <section class="mx-auto max-w-7xl">
 	<h1 class="my-12 text-4xl font-extrabold leading-none tracking-normal text-gray-700 dark:text-gray-200 md:text-6xl md:tracking-tight">
-		<span>Modifica</span>
+		<span>Edit</span>
 		<span class="block w-full py-2 text-transparent bg-clip-text leading-12 bg-gradient-to-r from-teal-400 to-teal-600 lg:inline">
-			{title}
+			{name}
 		</span> 
 	</h1>
 </section>
@@ -52,31 +52,31 @@
 		</Button>
 		{:else}
 		<Button color="red" type="submit">
-			Delete this project
+			Delete this item
 		</Button>
 		{/if}
 	</form>
 </div>
 
 <section class="mx-auto max-w-7xl bg-white dark:bg-gray-600 p-10 rounded-lg drop-shadow-md">
-
-	<form method="post" action="?/update" use:enhance={handleSubmit} bind:this={menuForm}>
+	
+	<form method="post" action="?/update" use:enhance={handleSubmit} bind:this={categoryForm}>
 		<div class="grid gap-6 mb-6 grid-cols-1">
 			<div class=hidden>
 				<Label for="id" class="mb-2">ID</Label>
 				<Input id="id" name="id" type="text" value={form?.id ?? id}  />
 			</div>
+			<div class=hidden>
+				<Label for="value" class="mb-2">value</Label>
+				<Input id="value" name="value" type="text" value={form?.value ?? value}  />
+			</div>
 			<div>
-				<Label for="title" class="mb-2">Title</Label>
-				<Input id="title" name="title" type="text" value={form?.title ?? title} size="lg" required />
+				<Label for="name" class="mb-2">Name</Label>
+				<Input id="name" name="name" type="text" value={form?.name ?? name} size="lg" required />
 			</div>
 			<div>
 				<Label for="description" class="mb-2">Description</Label>
 				<Textarea id="description" name="description" rows="4" value={form?.description ?? description}/>
-			</div>
-			<div>
-				<Label for="slug" class="mb-2">slug</Label>
-				<Input id="slug" name="slug" type="text" value={form?.slug ?? slug} />
 			</div>
 		</div>
 

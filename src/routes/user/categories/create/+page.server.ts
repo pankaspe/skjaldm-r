@@ -8,8 +8,6 @@ export const load = (async ({ params, locals: { supabase, getSession } }) => {
 		throw redirect(303, '/');
 	}
 
-	return { session };
-
 }) satisfies PageServerLoad;
 
 
@@ -17,29 +15,24 @@ export const actions = {
 	create: async ({ request, locals: { supabase, getSession } }) => {
 
 		const formData = await request.formData();
-		const title = formData.get('title') as string;
-        const slug = formData.get('slug') as string;
+		const name = formData.get('name') as string;
 		const description = formData.get('description') as string;
 
 		const session = await getSession();
 
-		const { error } = await supabase.from('projects').insert({
-            user_id: session?.user.id,
+		const { error } = await supabase.from('category').insert({
             profile_id: session?.user.id,
-			title,
-            slug,
+			name,
 			description,
-			created_at: new Date()
 		});
 
 		if (error) {
 			return fail(500, {
-				title,
+				name,
 				description,
-                slug
 			});
 		} else {
-			throw redirect(303, '/user/items-list');
+			throw redirect(303, '/user/categories');
 		}
 	},
 } satisfies Actions;
